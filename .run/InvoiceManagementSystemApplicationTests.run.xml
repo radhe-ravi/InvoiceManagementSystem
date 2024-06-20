@@ -1,16 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="InvoiceManagementSystemApplicationTests" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
     <module name="InvoiceManagementSystem" />
-    <extension name="coverage">
-      <pattern>
-        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.ServiceTest.*" />
-        <option name="ENABLED" value="true" />
-      </pattern>
-      <pattern>
-        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.*" />
-        <option name="ENABLED" value="true" />
-      </pattern>
-    </extension>
     <option name="PACKAGE_NAME" value="com.projects.InvoiceManagementSystem" />
     <option name="MAIN_CLASS_NAME" value="com.projects.InvoiceManagementSystem.InvoiceManagementSystemApplicationTests" />
     <option name="METHOD_NAME" value="" />

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,7 +23,7 @@ public class InvoiceHistoryImplementation implements InvoiceHistoryService {
     public List<InvoiceHistoryDTO> getAllInvoiceHistories() {
         return invoiceHistoryRepository.findAll().stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
