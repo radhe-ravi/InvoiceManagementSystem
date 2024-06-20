@@ -51,13 +51,13 @@ The goal is to design and implement a database schema for an invoice management 
 - **Foreign Key**: `invoice_history.created_by` references `user_detail.user_id`
 
 ## ER Diagram
-![img](pictures.jpg)
+![img](https://github.com/radhe-ravi/InvoiceManagementSystem/blob/36f3f52a18ebce36c4ab33f2dd217801b6a7b47f/InvoiceManagementSystem.drawio.png)
 
 ## Test coverage Result
 The following is the test coverage report for the InvoiceManagementSystem project, detailing the coverage percentages for each package and class within the project.
 ### Overall Coverage
-- **Class Coverage:** 94% (16/17)
-- **Method Coverage:** 70% (73/103)
-- **Line Coverage:** 77% (150/193)
+- **Class Coverage:** 100% (17/17)
+- **Method Coverage:** 72.5% (79/109)
+- **Line Coverage:** 78.4% (156/199)
   #### Report
   ![img](testresult.png)
