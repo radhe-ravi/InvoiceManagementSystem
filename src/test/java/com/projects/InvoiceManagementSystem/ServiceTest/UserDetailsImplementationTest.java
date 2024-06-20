@@ -33,18 +33,27 @@ class UserDetailsImplementationTest {
     }
 
     @Test
-     void testGetAllUsers() {
-        List<UserDetail> userList = new ArrayList<>();
+    void testGetAllUsers() {
         UserDetail user = new UserDetail();
         user.setUserId(UUID.randomUUID());
         user.setUserName("Radhe Ravi");
         user.setStatus("Active");
-        userList.add(user);
+
+        UserDetail user1 = new UserDetail();
+        user1.setUserId(UUID.randomUUID());
+        user1.setUserName("Ashish");
+        user1.setStatus("Active");
+
+        UserDetail user2 = new UserDetail();
+        user2.setUserId(UUID.randomUUID());
+        user2.setUserName("Kishan");
+        user2.setStatus("Active");
+        List<UserDetail> userList = new ArrayList<>(List.of(user, user1, user2));
 
         when(userDetailRepository.findAll()).thenReturn(userList);
 
         List<UserDetailDTO> result = userDetailService.getAllUsers();
-        assertEquals(1, result.size());
+        assertEquals(3, result.size());
         assertEquals("Radhe Ravi", result.get(0).getUserName());
         assertEquals("Active", result.get(0).getStatus());
     }
@@ -76,5 +85,4 @@ class UserDetailsImplementationTest {
         UserDetailDTO result = userDetailService.createUser(userDetailDTO);
         assertNotNull(result.getUserId());
     }
-
 }
