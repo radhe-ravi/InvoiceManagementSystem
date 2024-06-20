@@ -4,15 +4,15 @@ import com.projects.InvoiceManagementSystem.DTO.UserDetailDTO;
 import com.projects.InvoiceManagementSystem.Entities.UserDetail;
 import com.projects.InvoiceManagementSystem.Repository.UserDetailRepository;
 import com.projects.InvoiceManagementSystem.Service.UserDetailsService;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
+@Service
 public class UserDetailsImplementation implements UserDetailsService {
 
     private final UserDetailRepository userDetailRepository;
@@ -20,8 +20,7 @@ public class UserDetailsImplementation implements UserDetailsService {
     @Override
     public List<UserDetailDTO> getAllUsers() {
         return userDetailRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .map(this::convertToDTO).toList();
     }
 
     @Override
@@ -44,11 +43,11 @@ public class UserDetailsImplementation implements UserDetailsService {
 
 
     private UserDetailDTO convertToDTO(UserDetail userDetail) {
-        UserDetailDTO dto = new UserDetailDTO();
-        dto.setUserId(userDetail.getUserId());
-        dto.setUserName(userDetail.getUserName());
-        dto.setCreatedOn(userDetail.getCreatedOn());
-        dto.setStatus(userDetail.getStatus());
-        return dto;
+        UserDetailDTO userDetailDTO = new UserDetailDTO();
+        userDetailDTO.setUserId(userDetail.getUserId());
+        userDetailDTO.setUserName(userDetail.getUserName());
+        userDetailDTO.setStatus(userDetail.getStatus());
+        userDetailDTO.setCreatedOn(userDetail.getCreatedOn());
+        return userDetailDTO;
     }
 }

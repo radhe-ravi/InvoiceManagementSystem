@@ -8,24 +8,25 @@ import com.projects.InvoiceManagementSystem.Service.InvoiceService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Service
 public class InvoiceServiceImplementation implements InvoiceService {
-    private InvoiceRepository invoiceRepository;
+    private final InvoiceRepository invoiceRepository;
 
 
     @Override
     public List<InvoiceDTO> getAllInvoices() {
         return invoiceRepository.findAll().stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

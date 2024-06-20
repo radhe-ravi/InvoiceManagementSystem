@@ -1,6 +1,7 @@
 package com.projects.InvoiceManagementSystem.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,9 @@ public class Invoice {
     private String invoiceNo;
     private String panNo;
     private String gstNo;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy:MM:dd hh:mm:ss")
     private LocalDateTime createdOn;
 
     @ManyToOne
