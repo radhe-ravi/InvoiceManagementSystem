@@ -67,5 +67,5 @@ The system should enforce the following relationships between these entities:
 - **Foreign Key**: `invoice_item.created_by` references `user_detail.user_id`
 
 ## Visual Representation
-
+![img](pictures.jpg)
 
