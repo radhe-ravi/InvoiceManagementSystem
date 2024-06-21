@@ -1,4 +1,4 @@
-package com.projects.InvoiceManagementSystem.DTO;
+package com.projects.InvoiceManagementSystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDetailDTO {
+public class UserDetailDto {
     private UUID userId;
     private String userName;
 

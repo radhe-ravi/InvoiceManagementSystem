@@ -1,11 +1,12 @@
-package com.projects.InvoiceManagementSystem.Service.Implementions;
+package com.projects.InvoiceManagementSystem.service.implementions;
 
-import com.projects.InvoiceManagementSystem.DTO.InvoiceHistoryDTO;
-import com.projects.InvoiceManagementSystem.Entities.InvoiceHistory;
-import com.projects.InvoiceManagementSystem.Entities.UserDetail;
-import com.projects.InvoiceManagementSystem.Repository.InvoiceHistoryRepository;
-import com.projects.InvoiceManagementSystem.Service.InvoiceHistoryService;
+import com.projects.InvoiceManagementSystem.dto.InvoiceHistoryDto;
+import com.projects.InvoiceManagementSystem.entitiy.InvoiceHistory;
+import com.projects.InvoiceManagementSystem.entitiy.UserDetail;
+import com.projects.InvoiceManagementSystem.repository.InvoiceHistoryRepository;
+import com.projects.InvoiceManagementSystem.service.InvoiceHistoryService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,46 +15,56 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class InvoiceHistoryImplementation implements InvoiceHistoryService {
 
     private final InvoiceHistoryRepository invoiceHistoryRepository;
 
 
     @Override
-    public List<InvoiceHistoryDTO> getAllInvoiceHistories() {
+    public List<InvoiceHistoryDto> getAllInvoiceHistories() {
         return invoiceHistoryRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .toList();
     }
 
     @Override
-    public InvoiceHistoryDTO getInvoiceHistoryById(UUID invoiceId) {
+    public InvoiceHistoryDto getInvoiceHistoryById(UUID invoiceId) {
         return invoiceHistoryRepository.findById(invoiceId)
                 .map(this::convertToDTO)
                 .orElseThrow(() -> new RuntimeException("Invoice history not found"));
     }
 
     @Override
-    public InvoiceHistoryDTO saveInvoiceHistory(InvoiceHistoryDTO invoiceHistoryDTO) {
+    public InvoiceHistoryDto saveInvoiceHistory(InvoiceHistoryDto invoiceHistoryDTO) {
+
+        log.info("Invoice history : {}", invoiceHistoryDTO);
+
         InvoiceHistory invoiceHistory = new InvoiceHistory();
         UserDetail userDetail = new UserDetail();
         userDetail.setUserId(invoiceHistoryDTO.getCreatedBy());
-
         userDetail.setUserId(invoiceHistoryDTO.getCreatedBy());
         invoiceHistory.setInvoiceId(UUID.randomUUID());
         invoiceHistory.setEvent(invoiceHistoryDTO.getEvent());
         invoiceHistory.setCreatedOn(LocalDateTime.now());
         invoiceHistory.setCreatedBy(userDetail);
+
+        log.info("Invoice history saved : {}", convertToDTO(invoiceHistory));
         invoiceHistoryRepository.save(invoiceHistory);
         return convertToDTO(invoiceHistory);
     }
 
     @Override
-    public InvoiceHistoryDTO updateInvoiceHistory(UUID invoiceId, InvoiceHistoryDTO invoiceHistoryDTO) {
+    public InvoiceHistoryDto updateInvoiceHistory(UUID invoiceId, InvoiceHistoryDto invoiceHistoryDTO) {
+
+        log.info("Invoice history before : {}", invoiceHistoryDTO);
+
         InvoiceHistory invoiceHistory = invoiceHistoryRepository.findById(invoiceId)
                 .orElseThrow(() -> new RuntimeException("Invoice history not found"));
         invoiceHistory.setEvent(invoiceHistoryDTO.getEvent());
         invoiceHistoryRepository.save(invoiceHistory);
+
+        log.info("Invoice history after : {}", convertToDTO(invoiceHistory));
         return convertToDTO(invoiceHistory);
     }
 
@@ -62,8 +73,8 @@ public class InvoiceHistoryImplementation implements InvoiceHistoryService {
         invoiceHistoryRepository.deleteById(invoiceId);
     }
 
-    private InvoiceHistoryDTO convertToDTO(InvoiceHistory invoiceHistory) {
-        InvoiceHistoryDTO dto = new InvoiceHistoryDTO();
+    private InvoiceHistoryDto convertToDTO(InvoiceHistory invoiceHistory) {
+        InvoiceHistoryDto dto = new InvoiceHistoryDto();
         dto.setInvoiceId(invoiceHistory.getInvoiceId());
         dto.setEvent(invoiceHistory.getEvent());
         dto.setCreatedOn(invoiceHistory.getCreatedOn());

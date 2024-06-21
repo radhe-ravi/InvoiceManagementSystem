@@ -1,4 +1,4 @@
-package com.projects.InvoiceManagementSystem.DTO;
+package com.projects.InvoiceManagementSystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class InvoiceHistoryDTO {
+public class InvoiceHistoryDto {
     private UUID invoiceId;
     private String event;
 

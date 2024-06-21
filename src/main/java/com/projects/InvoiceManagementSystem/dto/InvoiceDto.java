@@ -1,4 +1,4 @@
-package com.projects.InvoiceManagementSystem.DTO;
+package com.projects.InvoiceManagementSystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -9,11 +9,11 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class InvoiceItemDTO {
-    private UUID invoiceItemId;
+public class InvoiceDto {
     private UUID invoiceId;
-    private String itemName;
-    private String itemDescription;
+    private String invoiceNo;
+    private String panNo;
+    private String gstNo;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "yyyy:MM:dd hh:mm:ss")

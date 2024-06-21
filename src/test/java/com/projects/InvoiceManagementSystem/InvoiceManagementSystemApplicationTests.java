@@ -1,20 +1,20 @@
 package com.projects.InvoiceManagementSystem;
-import com.projects.InvoiceManagementSystem.DTO.InvoiceDTO;
-import com.projects.InvoiceManagementSystem.DTO.InvoiceHistoryDTO;
-import com.projects.InvoiceManagementSystem.DTO.InvoiceItemDTO;
-import com.projects.InvoiceManagementSystem.DTO.UserDetailDTO;
-import com.projects.InvoiceManagementSystem.Entities.Invoice;
-import com.projects.InvoiceManagementSystem.Entities.InvoiceHistory;
-import com.projects.InvoiceManagementSystem.Entities.InvoiceItem;
-import com.projects.InvoiceManagementSystem.Entities.UserDetail;
-import com.projects.InvoiceManagementSystem.Repository.InvoiceHistoryRepository;
-import com.projects.InvoiceManagementSystem.Repository.InvoiceItemRepository;
-import com.projects.InvoiceManagementSystem.Repository.InvoiceRepository;
-import com.projects.InvoiceManagementSystem.Repository.UserDetailRepository;
-import com.projects.InvoiceManagementSystem.Service.Implementions.InvoiceHistoryImplementation;
-import com.projects.InvoiceManagementSystem.Service.Implementions.InvoiceItemServiceImplementation;
-import com.projects.InvoiceManagementSystem.Service.Implementions.InvoiceServiceImplementation;
-import com.projects.InvoiceManagementSystem.Service.Implementions.UserDetailsImplementation;
+import com.projects.InvoiceManagementSystem.dto.InvoiceDto;
+import com.projects.InvoiceManagementSystem.dto.InvoiceHistoryDto;
+import com.projects.InvoiceManagementSystem.dto.InvoiceItemDto;
+import com.projects.InvoiceManagementSystem.dto.UserDetailDto;
+import com.projects.InvoiceManagementSystem.entitiy.Invoice;
+import com.projects.InvoiceManagementSystem.entitiy.InvoiceHistory;
+import com.projects.InvoiceManagementSystem.entitiy.InvoiceItem;
+import com.projects.InvoiceManagementSystem.entitiy.UserDetail;
+import com.projects.InvoiceManagementSystem.repository.InvoiceHistoryRepository;
+import com.projects.InvoiceManagementSystem.repository.InvoiceItemRepository;
+import com.projects.InvoiceManagementSystem.repository.InvoiceRepository;
+import com.projects.InvoiceManagementSystem.repository.UserDetailRepository;
+import com.projects.InvoiceManagementSystem.service.implementions.InvoiceHistoryImplementation;
+import com.projects.InvoiceManagementSystem.service.implementions.InvoiceItemServiceImplementation;
+import com.projects.InvoiceManagementSystem.service.implementions.InvoiceServiceImplementation;
+import com.projects.InvoiceManagementSystem.service.implementions.UserDetailsImplementation;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -78,7 +78,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(userDetailRepository.findAll()).thenReturn(userList);
 
-        List<UserDetailDTO> result = userDetailService.getAllUsers();
+        List<UserDetailDto> result = userDetailService.getAllUsers();
         assertEquals(3, result.size());
         assertEquals("Radhe Ravi", result.get(0).getUserName());
         assertEquals("Active", result.get(0).getStatus());
@@ -95,7 +95,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(userDetailRepository.findById(USER_ID)).thenReturn(Optional.of(userDetail));
 
-        UserDetailDTO result = userDetailService.getUserById(USER_ID);
+        UserDetailDto result = userDetailService.getUserById(USER_ID);
         assertEquals("Radhe Ravi", result.getUserName());
         assertEquals("Active", result.getStatus());
 
@@ -103,13 +103,13 @@ class InvoiceManagementSystemApplicationTests {
 
     @Test
     void createUserTest(){
-        UserDetailDTO userDetailDTO = new UserDetailDTO();
+        UserDetailDto userDetailDTO = new UserDetailDto();
         userDetailDTO.setUserName("Radhe Ravi");
         userDetailDTO.setStatus("Offline");
 
         when(userDetailRepository.save(any(UserDetail.class))).thenReturn(new UserDetail());
 
-        UserDetailDTO result = userDetailService.createUser(userDetailDTO);
+        UserDetailDto result = userDetailService.createUser(userDetailDTO);
         assertNotNull(result.getUserId());
     }
 
@@ -134,7 +134,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceRepository.findAll()).thenReturn(invoices);
 
-        List<InvoiceDTO> result = invoiceService.getAllInvoices();
+        List<InvoiceDto> result = invoiceService.getAllInvoices();
         assertEquals(1,result.size());
         assertEquals("XMX7079",result.get(0).getInvoiceNo());
     }
@@ -156,13 +156,13 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceRepository.findById(USER_ID)).thenReturn(Optional.of(invoice));
 
-        InvoiceDTO result = invoiceService.getInvoiceById(USER_ID);
+        InvoiceDto result = invoiceService.getInvoiceById(USER_ID);
         assertEquals("XMX7079",result.getInvoiceNo());
     }
 
     @Test
     void testCreateInvoice() {
-        InvoiceDTO invoiceDTO = new InvoiceDTO();
+        InvoiceDto invoiceDTO = new InvoiceDto();
         invoiceDTO.setInvoiceNo("20BCS3021");
         invoiceDTO.setPanNo("XMX2514461");
         invoiceDTO.setGstNo("12ABCDE3456F7Z8");
@@ -176,7 +176,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceRepository.save(any(Invoice.class))).thenReturn(invoice);
 
-        InvoiceDTO result = invoiceService.createInvoice(invoiceDTO);
+        InvoiceDto result = invoiceService.createInvoice(invoiceDTO);
         assertNotNull(result.getInvoiceId());
         assertEquals("20BCS3021", result.getInvoiceNo());
     }
@@ -199,7 +199,7 @@ class InvoiceManagementSystemApplicationTests {
 
 
 
-        InvoiceDTO invoiceDTO = new InvoiceDTO();
+        InvoiceDto invoiceDTO = new InvoiceDto();
         invoiceDTO.setInvoiceNo("20BCS3021");
         invoiceDTO.setPanNo("XMX2514461");
         invoiceDTO.setGstNo("98XYZ3456F7Z8");
@@ -207,7 +207,7 @@ class InvoiceManagementSystemApplicationTests {
         when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
         when(invoiceRepository.save(any(Invoice.class))).thenReturn(invoice);
 
-        InvoiceDTO result = invoiceService.updateInvoice(invoiceId, invoiceDTO);
+        InvoiceDto result = invoiceService.updateInvoice(invoiceId, invoiceDTO);
         assertEquals("20BCS3021", result.getInvoiceNo());
         assertEquals("XMX2514461", result.getPanNo());
         assertEquals("98XYZ3456F7Z8", result.getGstNo());
@@ -254,7 +254,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceItemRepository.findAll()).thenReturn(invoiceItemList);
 
-        List<InvoiceItemDTO> result = invoiceItemService.getAllInvoiceItems();
+        List<InvoiceItemDto> result = invoiceItemService.getAllInvoiceItems();
         assertEquals(1, result.size());
         assertEquals("Samsung M52 5g", result.get(0).getItemName());
     }
@@ -283,14 +283,14 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceItemRepository.findById(USER_ID)).thenReturn(Optional.of(invoiceItem));
 
-        InvoiceItemDTO result = invoiceItemService.getInvoiceItemById(USER_ID);
+        InvoiceItemDto result = invoiceItemService.getInvoiceItemById(USER_ID);
 
         assertEquals("Samsung M52 5g", result.getItemName());
     }
 
     @Test
     void testCreateInvoiceItem(){
-        InvoiceItemDTO invoiceItemDTO = new InvoiceItemDTO();
+        InvoiceItemDto invoiceItemDTO = new InvoiceItemDto();
         invoiceItemDTO.setItemName("Samsung M52 5g");
         invoiceItemDTO.setItemDescription("This is android phone in budget range by samsung in just 25000");
         invoiceItemDTO.setInvoiceId(UUID.randomUUID());
@@ -307,7 +307,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceItemRepository.save(any(InvoiceItem.class))).thenReturn(invoiceItem);
 
-        InvoiceItemDTO result = invoiceItemService.createInvoiceItem(invoiceItemDTO);
+        InvoiceItemDto result = invoiceItemService.createInvoiceItem(invoiceItemDTO);
         assertNotNull(result.getInvoiceItemId());
         assertEquals("Samsung M52 5g", result.getItemName());
     }
@@ -315,7 +315,7 @@ class InvoiceManagementSystemApplicationTests {
     @Test
     void testUpdateInvoiceItem(){
         UUID invoiceItemId = UUID.randomUUID();
-        InvoiceItemDTO updatedInvoiceItemDTO = new InvoiceItemDTO();
+        InvoiceItemDto updatedInvoiceItemDTO = new InvoiceItemDto();
         updatedInvoiceItemDTO.setItemName("Samsung M52 5g");
         updatedInvoiceItemDTO.setItemDescription("This is android phone in budget range by samsung in just 25000 and it is a 5g variant");
         UUID invoiceId = UUID.randomUUID();
@@ -334,7 +334,7 @@ class InvoiceManagementSystemApplicationTests {
         when(invoiceItemRepository.save(any(InvoiceItem.class))).thenReturn(existingInvoiceItem);
 
 
-        InvoiceItemDTO result = invoiceItemService.updateInvoiceItem(invoiceItemId, updatedInvoiceItemDTO);
+        InvoiceItemDto result = invoiceItemService.updateInvoiceItem(invoiceItemId, updatedInvoiceItemDTO);
 
 
         assertNotNull(result.getInvoiceItemId());
@@ -372,7 +372,7 @@ class InvoiceManagementSystemApplicationTests {
         List<InvoiceHistory> invoiceHistoryList = new ArrayList<>(List.of(invoiceHistory1,invoiceHistory));
         when(invoiceHistoryRepository.findAll()).thenReturn(invoiceHistoryList);
 
-        List<InvoiceHistoryDTO> result = invoiceHistoryImplementation.getAllInvoiceHistories();
+        List<InvoiceHistoryDto> result = invoiceHistoryImplementation.getAllInvoiceHistories();
         assertEquals(2, result.size());
         assertEquals("Created", result.get(0).getEvent());
     }
@@ -394,7 +394,7 @@ class InvoiceManagementSystemApplicationTests {
 
         when(invoiceHistoryRepository.findById(invoiceId)).thenReturn(Optional.of(invoiceHistory));
 
-        InvoiceHistoryDTO result = invoiceHistoryImplementation.getInvoiceHistoryById(invoiceId);
+        InvoiceHistoryDto result = invoiceHistoryImplementation.getInvoiceHistoryById(invoiceId);
         assertEquals("Event1", result.getEvent());
 
     }

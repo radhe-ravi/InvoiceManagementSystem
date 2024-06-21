@@ -1,6 +1,6 @@
-package com.projects.InvoiceManagementSystem.Repository;
+package com.projects.InvoiceManagementSystem.repository;
 
-import com.projects.InvoiceManagementSystem.Entities.UserDetail;
+import com.projects.InvoiceManagementSystem.entitiy.UserDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.projects.InvoiceManagementSystem.Entities;
+package com.projects.InvoiceManagementSystem.entitiy;
 
 
 import jakarta.persistence.*;

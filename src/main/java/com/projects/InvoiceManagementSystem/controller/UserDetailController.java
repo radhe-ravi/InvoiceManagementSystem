@@ -1,8 +1,8 @@
-package com.projects.InvoiceManagementSystem.Controllers;
+package com.projects.InvoiceManagementSystem.controller;
 
 
-import com.projects.InvoiceManagementSystem.DTO.UserDetailDTO;
-import com.projects.InvoiceManagementSystem.Service.UserDetailsService;
+import com.projects.InvoiceManagementSystem.dto.UserDetailDto;
+import com.projects.InvoiceManagementSystem.service.UserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +16,17 @@ public class UserDetailController {
     private final UserDetailsService userDetailsService;
 
     @GetMapping("/get-all")
-    public List<UserDetailDTO> getAllUser() {
+    public List<UserDetailDto> getAllUser() {
         return userDetailsService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public UserDetailDTO getUserById(@PathVariable UUID id) {
+    public UserDetailDto getUserById(@PathVariable UUID id) {
        return userDetailsService.getUserById(id);
     }
 
     @PostMapping("/create")
-    public UserDetailDTO createUser(@RequestBody UserDetailDTO userDetailDTO) {
+    public UserDetailDto createUser(@RequestBody UserDetailDto userDetailDTO) {
         return userDetailsService.createUser(userDetailDTO);
     }
 }
