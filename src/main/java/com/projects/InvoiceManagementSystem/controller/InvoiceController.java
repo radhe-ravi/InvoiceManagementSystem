@@ -41,7 +41,7 @@ public class InvoiceController {
         log.info(invoiceDTO.toString());
         InvoiceDto updatedInvoice = invoiceService.updateInvoice(invoiceId, invoiceDTO);
         log.info(updatedInvoice.toString());
-        return updatedInvoice;
+        return updatedInvoice ;
     }
 
     @DeleteMapping("/{invoiceId}")
