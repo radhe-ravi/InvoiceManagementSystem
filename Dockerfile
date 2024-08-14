@@ -14,7 +14,7 @@ ENV DB_USER=postgres
 ENV DB_PASSWORD=password
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE 8081
 
 # Run the application
 CMD ["java", "-jar", "/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar"]
