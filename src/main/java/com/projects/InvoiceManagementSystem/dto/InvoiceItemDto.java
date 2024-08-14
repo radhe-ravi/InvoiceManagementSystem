@@ -18,5 +18,6 @@ public class InvoiceItemDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "yyyy:MM:dd hh:mm:ss")
     private LocalDateTime createdOn;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private UUID createdBy;
 }

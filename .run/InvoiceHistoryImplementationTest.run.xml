@@ -7,7 +7,7 @@
         <option name="ENABLED" value="true" />
       </pattern>
       <pattern>
-        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.Service.Implementions.InvoiceHistoryImplementation" />
+        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.service.implementions.InvoiceHistoryImplementation" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

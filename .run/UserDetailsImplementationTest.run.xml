@@ -7,7 +7,7 @@
         <option name="ENABLED" value="true" />
       </pattern>
       <pattern>
-        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.Service.Implementions.UserDetailsImplementation" />
+        <option name="PATTERN" value="com.projects.InvoiceManagementSystem.service.implementions.UserDetailsImplementation" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

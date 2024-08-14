@@ -28,7 +28,7 @@ public class InvoiceController {
         return invoiceService.getInvoiceById(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public InvoiceDto createInvoice(@RequestBody InvoiceDto invoiceDTO) {
         log.info(invoiceDTO.toString());
         InvoiceDto updatedInvoice = invoiceService.createInvoice(invoiceDTO);

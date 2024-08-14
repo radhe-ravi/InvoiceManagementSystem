@@ -24,7 +24,7 @@ public class InvoiceItemServiceImplementation implements InvoiceItemService {
     public List<InvoiceItemDto> getAllInvoiceItems() {
         return invoiceItemRepository.findAll().stream()
                 .map(this::convertToDTO)
-                .toList()
+                .toList();
     }
 
     @Override

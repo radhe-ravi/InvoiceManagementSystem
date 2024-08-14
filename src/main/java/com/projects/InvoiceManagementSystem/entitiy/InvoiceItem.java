@@ -1,6 +1,7 @@
 package com.projects.InvoiceManagementSystem.entitiy;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class InvoiceItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID invoiceItemId;
 
 
@@ -23,10 +24,12 @@ public class InvoiceItem {
     private LocalDateTime createdOn;
 
     @ManyToOne
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
     @ManyToOne
     @JoinColumn(name = "created_by")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private UserDetail createdBy;
 }

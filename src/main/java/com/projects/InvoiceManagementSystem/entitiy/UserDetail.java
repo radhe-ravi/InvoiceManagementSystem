@@ -29,4 +29,7 @@ public class UserDetail {
     private LocalDateTime createdOn;
 
     private String status;
+
+    public UserDetail(UUID userId) {
+    }
 }

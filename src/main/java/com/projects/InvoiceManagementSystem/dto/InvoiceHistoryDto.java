@@ -11,6 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class InvoiceHistoryDto {
+    private UUID invoiceHistoryId;
     private UUID invoiceId;
     private String event;
 
@@ -18,4 +19,5 @@ public class InvoiceHistoryDto {
             pattern = "yyyy:MM:dd hh:mm:ss")
     private LocalDateTime createdOn;
     private UUID createdBy;
+
 }

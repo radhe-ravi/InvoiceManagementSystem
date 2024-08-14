@@ -8,7 +8,5 @@ import java.util.UUID;
 public interface InvoiceHistoryService {
     List<InvoiceHistoryDto> getAllInvoiceHistories();
     InvoiceHistoryDto getInvoiceHistoryById(UUID id);
-    InvoiceHistoryDto saveInvoiceHistory(InvoiceHistoryDto invoiceHistoryDTO);
-    InvoiceHistoryDto updateInvoiceHistory(UUID invoiceId, InvoiceHistoryDto invoiceHistoryDTO);
     void deleteInvoiceHistory(UUID invoiceId);
 }

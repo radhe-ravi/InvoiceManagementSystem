@@ -10,6 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class InvoiceDto {
+
     private UUID invoiceId;
     private String invoiceNo;
     private String panNo;

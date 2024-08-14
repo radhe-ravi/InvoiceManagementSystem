@@ -2,7 +2,9 @@ package com.projects.InvoiceManagementSystem.service.implementions;
 
 import com.projects.InvoiceManagementSystem.dto.InvoiceDto;
 import com.projects.InvoiceManagementSystem.entitiy.Invoice;
+import com.projects.InvoiceManagementSystem.entitiy.InvoiceHistory;
 import com.projects.InvoiceManagementSystem.entitiy.UserDetail;
+import com.projects.InvoiceManagementSystem.repository.InvoiceHistoryRepository;
 import com.projects.InvoiceManagementSystem.repository.InvoiceRepository;
 import com.projects.InvoiceManagementSystem.service.InvoiceService;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.UUID;
 @Slf4j
 public class InvoiceServiceImplementation implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
+    private final InvoiceHistoryRepository invoiceHistoryRepository;
 
     @Override
     public List<InvoiceDto> getAllInvoices() {
@@ -40,19 +43,17 @@ public class InvoiceServiceImplementation implements InvoiceService {
     @Override
     public InvoiceDto createInvoice(InvoiceDto invoiceDTO) {
         log.info(invoiceDTO.toString());
-
         UserDetail ud = new UserDetail();
-        ud.setUserId(invoiceDTO.getCreatedBy());
         Invoice invoice = new Invoice();
-        invoice.setInvoiceId(UUID.randomUUID());
+        ud.setUserId(invoiceDTO.getCreatedBy());
+        UUID invoiceId = UUID.randomUUID();
+        invoice.setInvoiceId(invoiceId);
         invoice.setInvoiceNo(invoiceDTO.getInvoiceNo());
         invoice.setPanNo(invoiceDTO.getPanNo());
         invoice.setGstNo(invoiceDTO.getGstNo());
         invoice.setCreatedOn(LocalDateTime.now());
         invoice.setCreatedBy(ud);
         invoiceRepository.save(invoice);
-
-        log.info(convertToDTO(invoice).toString());
         return convertToDTO(invoice);
     }
 
@@ -67,9 +68,7 @@ public class InvoiceServiceImplementation implements InvoiceService {
         invoice.setPanNo(invoiceDTO.getPanNo());
         invoice.setGstNo(invoiceDTO.getGstNo());
         invoiceRepository.save(invoice);
-
         log.info(convertToDTO(invoice).toString());
-
         return convertToDTO(invoice);
     }
 
@@ -89,4 +88,5 @@ public class InvoiceServiceImplementation implements InvoiceService {
         dto.setCreatedBy(invoice.getCreatedBy().getUserId());
         return dto;
     }
+
 }

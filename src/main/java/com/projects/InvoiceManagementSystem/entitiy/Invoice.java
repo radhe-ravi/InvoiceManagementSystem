@@ -26,7 +26,10 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "created_by")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private UserDetail createdBy;
+
+
 
     public Invoice(UUID invoiceId) {
         this.invoiceId = invoiceId;
