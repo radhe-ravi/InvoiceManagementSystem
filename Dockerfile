@@ -4,8 +4,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the application JAR file
-COPY target/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar app/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar
+COPY target/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar /app/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar
 
 
 # Run the application
-CMD ["java", "-jar", "/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/InvoiceManagementSystem-0.0.1-SNAPSHOT.jar"]
